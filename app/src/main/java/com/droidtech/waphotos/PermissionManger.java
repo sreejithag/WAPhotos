@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
@@ -66,6 +67,7 @@ import androidx.core.content.PermissionChecker;
                             System.exit(0);
                         }
                     })
+                    .setCancelable(false)
                     .create()
                     .show();
         }else if(isFirstTime()){
@@ -73,28 +75,27 @@ import androidx.core.content.PermissionChecker;
             ActivityCompat.requestPermissions(activity,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},PERMISSION_READ_STORAGE);
         }else{
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage("Storage permission is required please enable storage permission");
-            builder.setCancelable(false);
-            builder.setPositiveButton("Permit manualy", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + BuildConfig.APPLICATION_ID));
-                    activity.startActivity(intent);
-                    activity.finish();
-                    System.exit(0);
-                }
-            });
-            builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    activity.finish();
-                    System.exit(0);
-                }
-            });
-            builder.create()
-                    .show();
+            new AlertDialog.Builder(activity)
+                .setMessage("Storage permission is required please enable storage permission")
+                .setCancelable(false)
+                .setPositiveButton("Open Settings", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + BuildConfig.APPLICATION_ID));
+                            activity.startActivity(intent);
+                            activity.finish();
+                            System.exit(0);
+                        }
+                    })
+                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            activity.finish();
+                            System.exit(0);
+                        }
+                    })
+                .create()
+                .show();
 
         }
     }
