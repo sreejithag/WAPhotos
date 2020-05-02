@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WA Status Saver</string>
+    <string name="title_activity_home">home</string>
+    <string name="title_whatsapp">Whatsapp</string>
+    <string name="title_whatsapp_business">Whatsapp Business</string>
+    <string name="title_settings">Settings</string>
+</resources>
