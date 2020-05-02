@@ -34,7 +34,7 @@ import androidx.core.content.PermissionChecker;
         sharedPreferences.edit().putBoolean("storage",false).apply();
     }
 
-    private boolean checkStoragePermission(){
+    protected boolean checkStoragePermission(){
 
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
 
@@ -47,7 +47,7 @@ import androidx.core.content.PermissionChecker;
 
     }
 
-    private void requestStoragePermission(){
+    protected void requestStoragePermission(){
 
 
         if(ActivityCompat.shouldShowRequestPermissionRationale(activity,Manifest.permission.READ_EXTERNAL_STORAGE)){
