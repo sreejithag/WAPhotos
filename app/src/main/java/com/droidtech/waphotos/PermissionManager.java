@@ -16,12 +16,12 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
 
- class PermissionManger {
+ public class PermissionManager {
 
     private static final int PERMISSION_READ_STORAGE=1;
     private Activity activity;
 
-    PermissionManger(Activity activity){
+    public PermissionManager(Activity activity){
         this.activity = activity;
     }
     private boolean isFirstTime(){
@@ -35,7 +35,7 @@ import androidx.core.content.PermissionChecker;
         sharedPreferences.edit().putBoolean("storage",false).apply();
     }
 
-    protected boolean checkStoragePermission(){
+    public boolean checkStoragePermission(){
 
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
 
@@ -48,7 +48,7 @@ import androidx.core.content.PermissionChecker;
 
     }
 
-    protected void requestStoragePermission(){
+    public void requestStoragePermission(){
 
 
         if(ActivityCompat.shouldShowRequestPermissionRationale(activity,Manifest.permission.READ_EXTERNAL_STORAGE)){

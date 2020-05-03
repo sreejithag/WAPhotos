@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animationCache="false"
+    >
 
+    <GridView
+        android:id="@+id/gridViewWhatsapp"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:columnWidth="200dp"
+        android:horizontalSpacing="1dp"
+        android:numColumns="auto_fit"
+        android:overScrollMode="always"
+        android:stretchMode="spacingWidthUniform"
+        android:verticalSpacing="8dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

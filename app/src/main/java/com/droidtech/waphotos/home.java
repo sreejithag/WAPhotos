@@ -20,14 +20,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class home extends AppCompatActivity {
-    PermissionManger permissionManger = new PermissionManger(this);
+    PermissionManager permissionManager = new PermissionManager(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().hide();
-//        PermissionManger permissionManger = new PermissionManger(this);
-        if(permissionManger.checkStoragePermission()){
+//        PermissionManager permissionManager = new PermissionManager(this);
+        if(permissionManager.checkStoragePermission()){
             getSupportActionBar().show();
             setContentView(R.layout.activity_home);
             BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -42,7 +42,7 @@ public class home extends AppCompatActivity {
 
         }
         else{
-            permissionManger.requestStoragePermission();
+            permissionManager.requestStoragePermission();
         }
 
 
@@ -57,13 +57,13 @@ public class home extends AppCompatActivity {
                 Intent intent = new Intent(this,home.class);
                 startActivity(intent);
             }else{
-                permissionManger.requestStoragePermission();
+                permissionManager.requestStoragePermission();
 
             }
 
         }
         else{
-            permissionManger.requestStoragePermission();
+            permissionManager.requestStoragePermission();
         }
     }
 
