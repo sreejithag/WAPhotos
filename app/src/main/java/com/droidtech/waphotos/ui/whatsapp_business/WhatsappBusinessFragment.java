@@ -43,47 +43,44 @@ public class WhatsappBusinessFragment extends Fragment {
         this.context = this.getContext();
         PermissionManager permissionManager = new PermissionManager(this.getActivity());
 
-        if(permissionManager.checkStorageReadPermission()){
+        if (permissionManager.checkStorageReadPermission()) {
 
             gridView = view.findViewById(R.id.gridViewWhatsappBusiness);
 
-            if(isWhatsappBusinessInstalled()){
+            if (isWhatsappBusinessInstalled()) {
                 FileServices fileServices = new FileServices(this.getActivity());
-                list = fileServices.getImageFiles(Environment.getExternalStorageDirectory().toString()+"/Whatsapp Business/Media/.Statuses");
+                list = fileServices.getImageFiles(Environment.getExternalStorageDirectory().toString() + "/Whatsapp Business/Media/.Statuses");
 
-               if(!list.isEmpty()){
-                   gridView.setAdapter(new GridAdapter(list,this.getActivity()));
+                if (!list.isEmpty()) {
+                    gridView.setAdapter(new GridAdapter(list, this.getActivity()));
 
-                   gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-                       @Override
-                       public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                           startActivity(new Intent(context, MediaViewer.class).putExtra("img", list.get(i).toString()));
-                       }
-                   });
-               }
-               else{
-                   TextView noFileText = view.findViewById(R.id.whatsappBusinessNoFiles);
-                   noFileText.setVisibility(View.VISIBLE);
-                   gridView.setVisibility(View.GONE);
-               }
-            }
-            else{
+                    gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            startActivity(new Intent(context, MediaViewer.class).putExtra("img", list.get(i).toString()));
+                        }
+                    });
+                } else {
+                    TextView noFileText = view.findViewById(R.id.whatsappBusinessNoFiles);
+                    noFileText.setVisibility(View.VISIBLE);
+                    gridView.setVisibility(View.GONE);
+                }
+            } else {
 
                 TextView whatsappBusinessNotInstalledText = view.findViewById(R.id.whatsappBusinessNotAvailableText);
                 gridView.setVisibility(View.GONE);
                 whatsappBusinessNotInstalledText.setVisibility(View.VISIBLE);
             }
 
-        }
-        else{
+        } else {
             permissionManager.requestStorageReadPermission();
         }
 
 
     }
 
-
-    public boolean isWhatsappBusinessInstalled(){
+    //method to check if whatsapp business is installed or not
+    private boolean isWhatsappBusinessInstalled() {
 
         PackageManager packageManager = getActivity().getPackageManager();
         try {
