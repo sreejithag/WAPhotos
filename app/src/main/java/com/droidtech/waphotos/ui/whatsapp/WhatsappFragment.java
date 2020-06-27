@@ -1,33 +1,24 @@
 package com.droidtech.waphotos.ui.whatsapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
-import com.bumptech.glide.Glide;
-import com.droidtech.waphotos.GridAdapter;
-import com.droidtech.waphotos.PermissionManager;
+import com.droidtech.waphotos.adaptor.GridAdapter;
+import com.droidtech.waphotos.services.PermissionManager;
 import com.droidtech.waphotos.R;
-import com.droidtech.waphotos.Services;
-import com.droidtech.waphotos.ViewImage;
-
+import com.droidtech.waphotos.services.FileServices;
+import com.droidtech.waphotos.MediaViewer;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -40,8 +31,8 @@ public class WhatsappFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_whatsapp, container, false);
-        return root;
+        return inflater.inflate(R.layout.fragment_whatsapp, container, false);
+
     }
 
     @Override
@@ -49,27 +40,57 @@ public class WhatsappFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.context = this.getContext();
         PermissionManager permissionManager = new PermissionManager(this.getActivity());
-        if(permissionManager.checkStoragePermission()){
 
-            Services services = new Services();
-            list = services.getImageFiles(Environment.getExternalStorageDirectory().toString()+"/Whatsapp/Media/.Statuses");
+        if(permissionManager.checkStorageReadPermission()){
+
             gridView = view.findViewById(R.id.gridViewWhatsapp);
-            gridView.setAdapter(new GridAdapter(list,this.getActivity()));
 
-            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    startActivity(new Intent(context, ViewImage.class).putExtra("img", list.get(i).toString()));
+            if(isWhatsappInstalled()){
+                FileServices fileServices = new FileServices(this.getActivity());
+                list = fileServices.getImageFiles(Environment.getExternalStorageDirectory().toString()+"/Whatsapp/Media/.Statuses");
+
+                if(!list.isEmpty()){
+                    gridView.setAdapter(new GridAdapter(list,this.getActivity()));
+
+                    gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            startActivity(new Intent(context, MediaViewer.class).putExtra("img", list.get(i).toString()));
+                        }
+                    });
                 }
-            });
+                else {
+                    TextView noFileText = view.findViewById(R.id.whatsappNoFiles);
+                    noFileText.setVisibility(View.VISIBLE);
+                    gridView.setVisibility(View.GONE);
+                }
+            }
+            else{
+
+                TextView whatsappNotInstalledText = view.findViewById(R.id.whatsappNotAvailableText);
+                gridView.setVisibility(View.GONE);
+                whatsappNotInstalledText.setVisibility(View.VISIBLE);
+            }
 
         }
         else{
-            permissionManager.requestStoragePermission();
+            permissionManager.requestStorageReadPermission();
         }
 
 
 
+    }
+
+    private boolean isWhatsappInstalled(){
+        PackageManager packageManager = getActivity().getPackageManager();
+
+
+        try {
+            packageManager.getPackageInfo("com.whatsapp", 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 
 }

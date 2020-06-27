@@ -4,6 +4,28 @@
     android:layout_height="match_parent"
     android:animationCache="false"
     >
+    <TextView
+        android:id="@+id/whatsappNotAvailableText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="23sp"
+        android:visibility="gone"
+        android:text="@string/noWhatsapp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/whatsappNoFiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="23sp"
+        android:visibility="gone"
+        android:text="@string/noFiles">
+    </TextView>
+
 
     <GridView
         android:id="@+id/gridViewWhatsapp"
@@ -15,6 +37,7 @@
         android:horizontalSpacing="1dp"
         android:numColumns="auto_fit"
         android:overScrollMode="always"
+        android:visibility="visible"
         android:stretchMode="spacingWidthUniform"
         android:verticalSpacing="8dp" />
 

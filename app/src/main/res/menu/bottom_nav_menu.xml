@@ -5,15 +5,16 @@
         android:id="@+id/navigation_whatsapp"
         android:icon="@drawable/ic_icon_whatsapp"
         android:title="@string/title_whatsapp" />
+    <item
+        android:id="@+id/navigation_saved_status"
+        android:icon="@drawable/ic_icon_gallery"
+        android:title="@string/title_settings" />
 
     <item
         android:id="@+id/navigation_whatsapp_busniness"
         android:icon="@drawable/ic_icon_whatsapp_business"
         android:title="@string/title_whatsapp_business" />
 
-    <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="@string/title_settings" />
+
 
 </menu>

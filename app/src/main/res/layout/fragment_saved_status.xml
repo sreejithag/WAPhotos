@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animationCache="false"
+    >
+
+    <GridView
+        android:id="@+id/gridViewSavedStatus"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:columnWidth="200dp"
+        android:horizontalSpacing="1dp"
+        android:numColumns="auto_fit"
+        android:overScrollMode="always"
+        android:stretchMode="spacingWidthUniform"
+        android:verticalSpacing="8dp" />
+
+    <TextView
+        android:id="@+id/noSavedStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="23sp"
+        android:visibility="gone"
+        android:text="@string/nothingSaved">
+    </TextView>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

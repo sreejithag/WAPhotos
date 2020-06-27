@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">WA Status Saver</string>
     <string name="title_activity_home">home</string>
-    <string name="title_whatsapp">Whatsapp</string>
-    <string name="title_whatsapp_business">Whatsapp Business</string>
-    <string name="title_settings">Settings</string>
+    <string name="title_whatsapp">Whatsapp Status</string>
+    <string name="title_whatsapp_business">Whatsapp Business Status</string>
+    <string name="title_settings">Saved Status</string>
+    <string name="noWhatsapp">WhatsApp is not installed</string>
+    <string name="noWhatsappBusiness">WhatsApp Business is not installed</string>
+    <string name="noFiles">No Status Found</string>
+    <string name="nothingSaved">No saved status found</string>
 </resources>

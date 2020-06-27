@@ -1,16 +1,14 @@
-package com.droidtech.waphotos;
+package com.droidtech.waphotos.adaptor;
 
 import android.app.Activity;
-import android.media.ThumbnailUtils;
-import android.provider.MediaStore;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.droidtech.waphotos.R;
 
 import java.io.File;
 import java.util.ArrayList;
