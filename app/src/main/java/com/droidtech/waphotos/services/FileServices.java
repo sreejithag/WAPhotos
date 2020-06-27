@@ -2,6 +2,7 @@ package com.droidtech.waphotos.services;
 
 import android.app.Activity;
 import android.os.Environment;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -47,6 +48,8 @@ public class FileServices {
             return true;
 
         }else{
+
+
             permissionManager.requestStorageWritePermission();
             return false;
         }
@@ -85,6 +88,7 @@ public class FileServices {
 
         }
         else{
+
             return false;
         }
     }

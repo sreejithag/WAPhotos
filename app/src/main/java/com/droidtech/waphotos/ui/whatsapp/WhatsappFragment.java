@@ -84,7 +84,6 @@ public class WhatsappFragment extends Fragment {
     private boolean isWhatsappInstalled(){
         PackageManager packageManager = getActivity().getPackageManager();
 
-
         try {
             packageManager.getPackageInfo("com.whatsapp", 0);
             return true;
