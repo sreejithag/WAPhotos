@@ -41,11 +41,11 @@ public class GridAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = activity.getLayoutInflater().inflate(R.layout.grid_item, viewGroup, false);
-        ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+        ImageView imageView = view.findViewById(R.id.imageView);
 
 
         if(getItem(i).toString().endsWith(".mp4")){
-            ImageView videoIcon = (ImageView) view.findViewById(R.id.videoIcon);
+            ImageView videoIcon = view.findViewById(R.id.videoIcon);
             videoIcon.setVisibility(View.VISIBLE);
         }
         Glide.with(activity)
