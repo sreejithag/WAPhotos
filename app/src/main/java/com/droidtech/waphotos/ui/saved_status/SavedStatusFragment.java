@@ -45,9 +45,9 @@ public class SavedStatusFragment extends Fragment {
 
             FileServices fileServices = new FileServices(this.getActivity());
             list = fileServices.getImageFiles(Environment.getExternalStorageDirectory().toString()+"/WA Saved");
-
+            gridView = view.findViewById(R.id.gridViewSavedStatus);
             if(!list.isEmpty()){
-                gridView = view.findViewById(R.id.gridViewSavedStatus);
+
                 gridView.setAdapter(new GridAdapter(list,this.getActivity()));
 
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){

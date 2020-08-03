@@ -48,9 +48,9 @@ public class WhatsappFragment extends Fragment {
             if(isWhatsappInstalled()){
                 FileServices fileServices = new FileServices(this.getActivity());
                 list = fileServices.getImageFiles(Environment.getExternalStorageDirectory().toString()+"/Whatsapp/Media/.Statuses");
-
+                gridView.setAdapter(new GridAdapter(list,this.getActivity()));
                 if(!list.isEmpty()){
-                    gridView.setAdapter(new GridAdapter(list,this.getActivity()));
+
 
                     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                         @Override
